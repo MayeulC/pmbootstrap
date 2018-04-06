@@ -7,7 +7,7 @@ url="https://postmarketos.org"
 license="MIT"
 arch="noarch"
 options="!check"
-depends="linux-sony-seagull mdss-fb-init-hack mkbootimg mesa-dri-swrast"
+depends="postmarketos-base linux-sony-seagull mdss-fb-init-hack mkbootimg mesa-dri-swrast"
 makedepends="devicepkg-dev"
 source="deviceinfo"
 
