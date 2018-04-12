@@ -17,11 +17,12 @@ HOSTCC="${CC:-gcc}"
 HOSTCC="${HOSTCC#${CROSS_COMPILE}}"
 
 # Source
-_archive="18.1.A.1.23.tar.bz2"
-_srcurl="https://dl.developer.sonymobile.com/code/copylefts/${_archive}"
+_repository="android_kernel_sony_seagull"
+_commit="e39e9203b59a21cac634a86641b0413b0100ed48"
+_srcurl="https://github.com/pmsourcedump/${_repository}/archive/${_commit}.tar.gz"
 _config="config-${_flavor}.${arch}"
 source="
-	$pkgname-$pkgver.tar.bz2::${_srcurl}
+	$pkgname-$pkgver.tar.gz::${_srcurl}
 	$_config
 	compiler-gcc6.h
 	01_fix_return_address.patch
@@ -30,7 +31,7 @@ source="
 	04_timeconst_fix.patch
 	05_psmouse_base.patch
 "
-builddir="$srcdir/kernel"
+builddir="$srcdir/${_repository}-${_commit}/"
 
 prepare() {
 	default_prepare
@@ -92,7 +93,7 @@ package() {
 		"$pkgdir/boot/dt.img"
 }
 
-sha512sums="9b515c6f4d69b9f40d221ec3087021048c2896ec12182fb19ecafc30f7323e7983309fdce607bec74fc95248e04d651e3b561e96fa1736c343dd61e6305348e0  linux-sony-seagull-3.4.0.tar.bz2
+sha512sums="d060cd2ac73d5fd645ee3d9aff1b5912e2e237606d78be4180de0da850143458c8dc1bc425ed6201f9d6bff941364a722ea84e3c2a5b8404bc2e79cecf7c88e8  linux-sony-seagull-3.4.0.tar.gz
 7aa575bfcd157e993bf3935e29039ad857cd1624a4ee3e53e3ed31d0f2fec05abac5bcd59d2f95c7ee4dc378c958ff88aef48c0ee38f63d9a3361037a45696ee  config-sony-seagull.armhf
 d80980e9474c82ba0ef1a6903b434d8bd1b092c40367ba543e72d2c119301c8b2d05265740e4104ca1ac5d15f6c4aa49e8776cb44264a9a28dc551e0d1850dcc  compiler-gcc6.h
 ea1d3b5a234fa565e3c1a792de48f4fc4e6023d281d303c8e319c7ef28edc5739ab0e4dea0139a41f0a5c7d03e27921ccaa214fd0ac5c72245a094ce60128864  01_fix_return_address.patch
